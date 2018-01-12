@@ -30,3 +30,11 @@ pairElement(_, [], []).
 pairElement(X, [H|T], [[X, H]|REST]) :- pairElement(X, T, REST).
 pairs(L, []) :- length(L, LEN), LEN < 2.
 pairs([H|T], R) :- pairElement(H, T, Chosen), pairs(T, Not_Chosen), append(Chosen,  Not_Chosen, R).
+
+
+% 4)
+% merge(FL, SL, L)
+% L is the merging of FL and SL, one item from FL and then an item from SL.
+merge(FS, [], FS).
+merge([], LS, LS).
+merge([H1|T1], [H2|T2], [H1|[H2|M]]) :- merge(T1, T2, M).
