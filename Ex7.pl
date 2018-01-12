@@ -61,3 +61,10 @@ dropFirst([[_|Tail]|T], [Tail|REST]) :- dropFirst(T, REST).
 % Result is a list holding the Nth element in each list in LSS. (N starts from 1)
 selectCol(LSS, 1, R) :- takeFirst(LSS, R).
 selectCol(LSS, N, R) :- dropFirst(LSS, L), NN is N - 1, selectCol(L, NN, R).
+
+
+% 5.4)
+% transpose(M, Result)
+% Result is M transposed (M^t).
+transpose([H|T], []) :- length(H, LEN), LEN < 1.
+transpose(M, [Col|REST]) :- takeFirst(M, Col), dropFirst(M, MM), transpose(MM, REST).
