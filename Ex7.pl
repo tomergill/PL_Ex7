@@ -54,3 +54,10 @@ takeFirst([[H|_]|T], [H|REST]) :- takeFirst(T, REST).
 % Result is LSS but each list in it dropped the 1st element.
 dropFirst([], []).
 dropFirst([[_|Tail]|T], [Tail|REST]) :- dropFirst(T, REST).
+
+
+% 5.3)
+% selectCol(LSS, N, Result)
+% Result is a list holding the Nth element in each list in LSS. (N starts from 1)
+selectCol(LSS, 1, R) :- takeFirst(LSS, R).
+selectCol(LSS, N, R) :- dropFirst(LSS, L), NN is N - 1, selectCol(L, NN, R).
