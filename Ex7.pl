@@ -15,7 +15,18 @@ getElement([_|T], N, R) :- NN is N - 1, getElement(T, NN, R).
 
 
 % 2)
-% mulList
-% Multiplies the elements of the list by one another. Empty lists get 1.
+% mulList(L, R)
+% R is the multiplication of the elements of the list by one another, or if L is empty R is 1.
 mulList([], 1).
 mulList([H|T], R) :- mulList(T, RTAG), R is H * RTAG.
+
+
+% 3)
+% pairs(LS, R)
+% R is a list of all the pairs that can be made from the elements of LS.
+% Uses the auxiliary function pairElement(X, L, R) where R is a list of all the pairs (lists) 
+% of X and an element from L.
+pairElement(_, [], []).
+pairElement(X, [H|T], [[X, H]|REST]) :- pairElement(X, T, REST).
+pairs(L, []) :- length(L, LEN), LEN < 2.
+pairs([H|T], R) :- pairElement(H, T, Chosen), pairs(T, Not_Chosen), append(Chosen,  Not_Chosen, R).
