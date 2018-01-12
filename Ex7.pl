@@ -6,8 +6,8 @@
 % 1)
 % getElement(L, N, R)
 % R is the N-th element in L (a list)
-getElement([], N, undefined).
-getElement(L, N, undefined) :- N < 0.
+getElement([], _, undefined).
+getElement(_, N, undefined) :- N < 0.
 getElement(L, N, undefined) :- length(L, LEN), N > LEN.
-getElement([H|T], 0, H).
-getElement([H|T], N, R) :- NN is N - 1, getElement(T, NN, R).
+getElement([H|_], 0, H).
+getElement([_|T], N, R) :- NN is N - 1, getElement(T, NN, R).
