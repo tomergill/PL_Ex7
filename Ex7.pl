@@ -47,3 +47,10 @@ merge([H1|T1], [H2|T2], [H1|[H2|M]]) :- merge(T1, T2, M).
 % Result is a list of the first item in each list in LSS.
 takeFirst([], []).
 takeFirst([[H|_]|T], [H|REST]) :- takeFirst(T, REST).
+
+
+% 5.2)
+% dropFirst(LSS, Result)
+% Result is LSS but each list in it dropped the 1st element.
+dropFirst([], []).
+dropFirst([[_|Tail]|T], [Tail|REST]) :- dropFirst(T, REST).
