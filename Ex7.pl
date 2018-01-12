@@ -38,3 +38,12 @@ pairs([H|T], R) :- pairElement(H, T, Chosen), pairs(T, Not_Chosen), append(Chose
 merge(FS, [], FS).
 merge([], LS, LS).
 merge([H1|T1], [H2|T2], [H1|[H2|M]]) :- merge(T1, T2, M).
+
+
+% PART 5 - transpose
+
+% 5.1)
+% takeFirst(LSS, Result)
+% Result is a list of the first item in each list in LSS.
+takeFirst([], []).
+takeFirst([[H|_]|T], [H|REST]) :- takeFirst(T, REST).
